@@ -1,17 +1,20 @@
-# 服务端eureka1配置
+# 服务提供者eureka配置
 server:
-  port: 10086
+  port: 9091
 spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db3
+    username: root
+    password: root
   application:
-    name: eureka-server  # 应用名称，会在eureka中作为服务的id标示
+    name: user-service
 eureka:
   client:
-    service-url:   # eurekaServer的地址，现在是自己的不用写，如果是集群需要写其他服务器的地址，写其他服务器地址，不写自己的地址，因为默认是可以直接注册自己的
-      defaultZone: http://127.0.0.1:10087/eureka,http://127.0.0.1:10088/eureka
-    register-with-eureka: true   # 不注册自己
-    fetch-registry: true   # 不拉取注册
-  server:
-    # 服务失效剔除时间间隔，默认60秒，即在这个时间间隔内如果服务不可用了就会从服务列表中剔除这个服务
-    eviction-interval-timer-in-ms: 60000
-    # 关闭自我保护模式（默认是打开的），打开该模式的时候微服务出现问题他也不会注销这个微服务，关闭就是不进入这个模式，心跳不正常就关闭这个服务，以提高性能
-    enable-self-preservation: false
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka,http://127.0.0.1:10088/eureka
+  instance:
+    # 服务失效时间默认炎90秒
+    lease-expiration-duration-in-seconds: 90
+    # 服务续约（renew）间隔默认30秒
+    lease-renewal-interval-in-seconds: 30
