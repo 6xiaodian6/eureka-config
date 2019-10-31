@@ -19,5 +19,5 @@ eureka:
     # 服务续约（renew）间隔默认30秒
     lease-renewal-interval-in-seconds: 30
 
-# test:
-#   name: yuandian
+test:
+  name: yuandian1
