@@ -20,4 +20,4 @@ eureka:
     lease-renewal-interval-in-seconds: 30
 
 test:
-  name: yuandian1
+  name: yuandian
